@@ -17,6 +17,7 @@ gem 'rake'
 
 group :test do
   gem 'rspec'
+  gem 'rspec_junit_formatter'
 end
 
 gem 'codecov', :require => false, :group => :test
