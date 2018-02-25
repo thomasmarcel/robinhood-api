@@ -13,4 +13,6 @@ gemspec
 # To use a debugger
 # gem 'byebug', group: [:development, :test]
 
+gem 'rake'
+
 gem 'codecov', :require => false, :group => :test
