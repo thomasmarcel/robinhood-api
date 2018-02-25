@@ -10,9 +10,23 @@ GEM
       json
       simplecov
       url
+    diff-lcs (1.3)
     docile (1.1.5)
     json (2.1.0)
     rake (12.3.0)
+    rspec (3.7.0)
+      rspec-core (~> 3.7.0)
+      rspec-expectations (~> 3.7.0)
+      rspec-mocks (~> 3.7.0)
+    rspec-core (3.7.1)
+      rspec-support (~> 3.7.0)
+    rspec-expectations (3.7.0)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.7.0)
+    rspec-mocks (3.7.0)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.7.0)
+    rspec-support (3.7.1)
     simplecov (0.15.1)
       docile (~> 1.1.0)
       json (>= 1.8, < 3)
@@ -27,6 +41,7 @@ DEPENDENCIES
   codecov
   rake
   robinhood-api!
+  rspec
 
 BUNDLED WITH
    1.16.1

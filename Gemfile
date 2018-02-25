@@ -15,4 +15,8 @@ gemspec
 
 gem 'rake'
 
+group :test do
+  gem 'rspec'
+end
+
 gem 'codecov', :require => false, :group => :test
