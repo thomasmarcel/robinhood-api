@@ -21,3 +21,8 @@ group :test do
 end
 
 gem 'codecov', :require => false, :group => :test
+gem 'simplecov', require: false, group: :test
+
+group :test, :development do
+  gem 'minitest'
+end
