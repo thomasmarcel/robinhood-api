@@ -15,14 +15,15 @@ gemspec
 
 gem 'rake'
 
-group :test do
-  gem 'rspec'
-  gem 'rspec_junit_formatter'
-end
+gem 'httparty'
 
-gem 'codecov', :require => false, :group => :test
+gem 'codecov', require: false, group: :test
 gem 'simplecov', require: false, group: :test
 
 group :test, :development do
   gem 'minitest'
+  gem 'minitest-reporters'
+  gem 'minitest-junit'
+  gem 'rspec'
+  gem 'rspec_junit_formatter'
 end

@@ -1,7 +1,11 @@
 require 'test_helper'
 
-class Robinhood::Api::Test < ActiveSupport::TestCase
-  test 'truth' do
-    assert_kind_of Module, Robinhood::Api
+class RobinhoodApiTest < Minitest::Test
+  describe 'Failed Login' do
+    it 'Must fail login' do
+      robinhood = Robinhood::Api.new
+
+      robinhood.login('aaa', 'bbb')
+    end
   end
 end
