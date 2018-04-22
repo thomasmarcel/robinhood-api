@@ -26,4 +26,5 @@ group :test, :development do
   gem 'minitest-junit'
   gem 'rspec'
   gem 'rspec_junit_formatter'
+  gem 'coveralls', require: false
 end

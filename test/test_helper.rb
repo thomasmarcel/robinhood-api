@@ -1,5 +1,8 @@
 require 'simplecov'
+require 'coveralls'
+
 SimpleCov.start
+Coveralls.wear!
 
 # require File.expand_path("../../test/dummy/config/environment.rb", __FILE__)
 # ActiveRecord::Migrator.migrations_paths = [

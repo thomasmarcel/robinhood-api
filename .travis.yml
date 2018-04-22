@@ -1,6 +1,11 @@
 language: ruby
 rvm:
-- 2.4.1
+- 2.5.1
 notifications:
   slack:
     secure: UU6e7i5POo28nAnwnAkgMLucukoWZfHSoTo7mH5oqLcukwR6okWx6boRhCwagxY02PgqSMaZ2X5d5SIIEYcgopXxespItRXg81A/rSgr5sAakh8DNJmiXotALm31YvfvN9YBjkjeapQq+EVkzXfPK/jFH2/mwF66vkgwCs9UguLp0jnWefqyTAwP2/ioJhvY8pE9YKbPIJx/KMFLJH75mpALBvVVAhrVsUpkDBWesZb13DkytHg3OB9ZTra20dGEJenv2IBV6N8rBVd1SlLIrifmuTRfY4SNchtVdXQsi8+1NMh+M97AC/8vLC4Nvb8q7Q/bh0tAz3l8pP0nYO1O6Q0oqgSxwNf9BjHpO+VqovyWvZkmTznoLaEo/zyYgBvE1xegTLZMdjGs8Xx1NjHkwJhgkAvS2Tqdq4qZmilOFa2SQ/8kH5G0hOrlSAF+b20t/48dgTyqIhulYRkiDlOOJde+B2v4HgKAzSnjVyYQSm5V8vf16LRU53yYJOneoIwYEQBUon7/zNgCJa0UAdYd1w4EVkSn2tLqYuGPzz3xhSWJHNXfjArtbEJVaFPciUTEmi+R4OJNsRSP30DE3PyeNgUp0XtYlqUschiMUHHU7Z9N2arpjABSeDMK4q+W7p4stKIstNpedX30LNByF0mjQX5lrieO3lkXBE0SzmHGJfQ=
+install:
+  - gem install bundler
+  - bundle install
+script:
+  - bundle exec rake test
