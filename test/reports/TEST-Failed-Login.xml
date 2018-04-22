@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<test_suites>
+  <testsuite name="Failed Login" filepath="test/robinhood/api_test.rb" skipped="0" failures="0" errors="1" tests="1" assertions="0" time="4.099999205209315e-05">
+    <testcase name="test_0001_Must fail login" lineno="5" classname="Failed Login" assertions="0" time="4.099999205209315e-05">
+    <error type="test_0001_Must fail login" message="NameError: uninitialized constant RobinhoodApiTest::Robinhood...">
+Failure:
+test_0001_Must fail login(Minitest::Result) [/Users/thomas/dev/robinhood-api/test/robinhood/api_test.rb:6]:
+NameError: uninitialized constant RobinhoodApiTest::Robinhood
+Did you mean?  RobinhoodApiTest
+    /Users/thomas/dev/robinhood-api/test/robinhood/api_test.rb:6:in `block (2 levels) in &lt;class:RobinhoodApiTest&gt;'
+    </error>
+    </testcase>
+  </testsuite>
+</test_suites>
