@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'robinhood-api'
-  s.version     = '0.6.0'
+  s.version     = '0.6.1'
   s.date        = '2018-04-22'
   s.summary     = 'Calling the Robinhood API'
   s.description = 'Get the most of Robinhood: accounts, positions, ' \

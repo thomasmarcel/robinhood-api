@@ -1,6 +1,8 @@
 # Robinhood::Api
 [![Build Status](https://travis-ci.org/ThomasMarcel/robinhood-api.svg?branch=master)](https://travis-ci.org/ThomasMarcel/robinhood-api)  
 [![Coverage Status](https://coveralls.io/repos/github/ThomasMarcel/robinhood-api/badge.svg?branch=master)](https://coveralls.io/github/ThomasMarcel/robinhood-api?branch=master)  
+[![Maintainability](https://api.codeclimate.com/v1/badges/8ecfb033edb5380098cf/maintainability)](https://codeclimate.com/github/ThomasMarcel/robinhood-api/maintainability)  
+[![Test Coverage](https://api.codeclimate.com/v1/badges/8ecfb033edb5380098cf/test_coverage)](https://codeclimate.com/github/ThomasMarcel/robinhood-api/test_coverage)  
 
 __Get the most of Robinhood: accounts, positions, portfolio, buy and sell securities, etc.__  
 

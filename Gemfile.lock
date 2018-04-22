@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    robinhood-api (0.5.0)
+    robinhood-api (0.6.0)
 
 GEM
   remote: https://rubygems.org/
