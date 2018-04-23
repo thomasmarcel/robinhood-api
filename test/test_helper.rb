@@ -1,8 +1,8 @@
 require 'simplecov'
 require 'coveralls'
 
+Coveralls.wear! unless ENV['CC_TEST_REPORTER_ID'].nil?
 SimpleCov.start
-Coveralls.wear!
 
 # require File.expand_path("../../test/dummy/config/environment.rb", __FILE__)
 # ActiveRecord::Migrator.migrations_paths = [
