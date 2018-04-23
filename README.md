@@ -11,9 +11,58 @@ __Get the most of Robinhood: accounts, positions, portfolio, buy and sell securi
 [rubygems.org page](https://rubygems.org/gems/robinhood-api)  
 
 ## Usage
-How to use my plugin.
+
+1. Set the `ROBINHOOD_USERNAME` and `ROBINHOOD_PASSWORD` in your environment  
+e.g. in your `~/.bash_profile` or `~/.bashrc` file:  
+```sh
+export ROBINHOOD_USERNAME="aaa"
+export ROBINHOOD_PASSWORD="bbb"
+```
+
+1. In you rb file:  
+
+```ruby
+robinhood = Robinhood::Api,new  
+
+robinhood.login(
+  ENV['ROBINHOOD_USERNAME'],
+  ENV['ROBINHOOD_PASSWORD']
+)
+
+# Getting the list of orders made by the user
+@orders = robinhood.orders
+```
+
+### Methods
+
+#### General
+
+* login  
+* accounts  
+* investment_profile  
+* portfolio  
+
+#### Orders
+
+* orders  
+* cancel_order  
+* buy  
+* limit_buy  
+* sell  
+* limit_sell  
+* stop_loss_sell  
+
+#### Quotes
+
+* quote  
+
+#### Positions and Instruments
+
+* instruments  
+* position  
 
 ## Installation
+
 Add this line to your application's Gemfile:
 
 ```ruby
