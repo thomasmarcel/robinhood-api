@@ -113,4 +113,37 @@ class RobinhoodApiTest < Minitest::Test
       assert_equal(true, quote.keys.include?('symbol'))
     end
   end
+
+  describe 'Positions' do
+    it 'Must must get the positions' do
+      robinhood = Robinhood::Api.new
+
+      robinhood.login(
+        ENV['ROBINHOOD_USERNAME'],
+        ENV['ROBINHOOD_PASSWORD']
+      )
+
+      account = robinhood.accounts['results'][0]['account_number']
+      positions = robinhood.positions(account)
+      assert_equal(Hash, positions.class)
+      assert_equal(true, positions.keys.include?('results'))
+    end
+
+    it 'Must must get the positions for a specific instrument' do
+      robinhood = Robinhood::Api.new
+
+      robinhood.login(
+        ENV['ROBINHOOD_USERNAME'],
+        ENV['ROBINHOOD_PASSWORD']
+      )
+
+      account = robinhood.accounts['results'][0]['account_number']
+      instrument = robinhood.instruments('AAPL')
+      positions = robinhood.positions(account, instrument['results'][0]['id'])
+      puts positions
+      assert_equal(Hash, positions.class)
+      # TODO: Try to use an instrument based on current positions if any
+      # assert_equal(true, positions.keys.include?('results'))
+    end
+  end
 end
