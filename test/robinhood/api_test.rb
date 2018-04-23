@@ -68,4 +68,49 @@ class RobinhoodApiTest < Minitest::Test
       assert_equal(true, profile.keys.include?('user'))
     end
   end
+
+  describe 'Portfolio' do
+    it 'Must must get the portfolio' do
+      robinhood = Robinhood::Api.new
+
+      robinhood.login(
+        ENV['ROBINHOOD_USERNAME'],
+        ENV['ROBINHOOD_PASSWORD']
+      )
+
+      accounts = robinhood.accounts
+      portfolio = robinhood.portfolio(accounts['results'][0]['account_number'])
+      assert_equal(Hash, portfolio.class)
+      assert_equal(true, portfolio.keys.include?('url'))
+    end
+  end
+
+  describe 'Instruments and Quotes' do
+    it 'Must must get the instrument for AAPL' do
+      robinhood = Robinhood::Api.new
+
+      robinhood.login(
+        ENV['ROBINHOOD_USERNAME'],
+        ENV['ROBINHOOD_PASSWORD']
+      )
+
+      instrument = robinhood.instruments('AAPL')
+      assert_equal(Hash, instrument.class)
+      assert_equal(true, instrument.keys.include?('results'))
+      assert_equal(true, instrument['results'][0].keys.include?('symbol'))
+    end
+
+    it 'Must must get the quote for AAPL' do
+      robinhood = Robinhood::Api.new
+
+      robinhood.login(
+        ENV['ROBINHOOD_USERNAME'],
+        ENV['ROBINHOOD_PASSWORD']
+      )
+
+      quote = robinhood.quote('AAPL')
+      assert_equal(Hash, quote.class)
+      assert_equal(true, quote.keys.include?('symbol'))
+    end
+  end
 end
