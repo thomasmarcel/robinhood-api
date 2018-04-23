@@ -4,6 +4,8 @@
 [![Coverage Status](https://coveralls.io/repos/github/ThomasMarcel/robinhood-api/badge.svg?branch=master)](https://coveralls.io/github/ThomasMarcel/robinhood-api?branch=master) 
 [![Maintainability](https://api.codeclimate.com/v1/badges/8ecfb033edb5380098cf/maintainability)](https://codeclimate.com/github/ThomasMarcel/robinhood-api/maintainability) 
 [![Test Coverage](https://api.codeclimate.com/v1/badges/8ecfb033edb5380098cf/test_coverage)](https://codeclimate.com/github/ThomasMarcel/robinhood-api/test_coverage) 
+[![Dependency Status](https://beta.gemnasium.com/badges/github.com/ThomasMarcel/robinhood-api.svg)](https://beta.gemnasium.com/projects/github.com/ThomasMarcel/robinhood-api) 
+[![Open Source Helpers](https://www.codetriage.com/cucumber/cucumber-rails/badges/users.svg)](https://www.codetriage.com/cucumber/cucumber-rails) 
 
 __Get the most of Robinhood: accounts, positions, portfolio, buy and sell securities, etc.__  
 
