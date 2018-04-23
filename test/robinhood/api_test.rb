@@ -39,4 +39,33 @@ class RobinhoodApiTest < Minitest::Test
       assert_equal(true, orders.keys.include?('results'))
     end
   end
+
+  describe 'User Data' do
+    it 'Must must get the accounts' do
+      robinhood = Robinhood::Api.new
+
+      robinhood.login(
+        ENV['ROBINHOOD_USERNAME'],
+        ENV['ROBINHOOD_PASSWORD']
+      )
+
+      accounts = robinhood.accounts
+      assert_equal(Hash, accounts.class)
+      assert_equal(true, accounts.keys.include?('results'))
+      assert accounts['results'].length >= 1
+    end
+
+    it 'Must must get the investment profile' do
+      robinhood = Robinhood::Api.new
+
+      robinhood.login(
+        ENV['ROBINHOOD_USERNAME'],
+        ENV['ROBINHOOD_PASSWORD']
+      )
+
+      profile = robinhood.investment_profile
+      assert_equal(Hash, profile.class)
+      assert_equal(true, profile.keys.include?('user'))
+    end
+  end
 end
