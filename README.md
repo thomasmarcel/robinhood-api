@@ -19,8 +19,7 @@ e.g. in your `~/.bash_profile` or `~/.bashrc` file:
 ```sh
 export ROBINHOOD_USERNAME="aaa"
 export ROBINHOOD_PASSWORD="bbb"
-```
-
+```  
 1. In you rb file:  
 ```ruby
 robinhood = Robinhood::Api,new  
