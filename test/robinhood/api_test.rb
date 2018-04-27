@@ -26,7 +26,7 @@ class RobinhoodApiTest < Minitest::Test
   end
 
   describe 'Orders' do
-    it 'Must must get the user orders' do
+    it 'Must get the user orders' do
       robinhood = Robinhood::Api.new
 
       robinhood.login(
@@ -37,6 +37,97 @@ class RobinhoodApiTest < Minitest::Test
       orders = robinhood.orders
       assert_equal(Hash, orders.class)
       assert_equal(true, orders.keys.include?('results'))
+    end
+
+    it 'Must try to order an option' do
+      robinhood = Robinhood::Api.new
+
+      robinhood.login(
+        ENV['ROBINHOOD_USERNAME'],
+        ENV['ROBINHOOD_PASSWORD']
+      )
+
+      order = robinhood.order('sell', 'AAPL', 200.0, 1, 'market')
+      assert_equal(Hash, order.class)
+      assert order.keys.include?('results') || order.keys.include?('detail')
+    end
+
+    it 'Must try to buy an option' do
+      robinhood = Robinhood::Api.new
+
+      robinhood.login(
+        ENV['ROBINHOOD_USERNAME'],
+        ENV['ROBINHOOD_PASSWORD']
+      )
+
+      order = robinhood.buy('AAPL', 200.0, 1)
+      assert_equal(Hash, order.class)
+      assert order.keys.include?('results') || order.keys.include?('detail')
+    end
+
+    it 'Must try to limit buy an option' do
+      robinhood = Robinhood::Api.new
+
+      robinhood.login(
+        ENV['ROBINHOOD_USERNAME'],
+        ENV['ROBINHOOD_PASSWORD']
+      )
+
+      order = robinhood.limit_buy('AAPL', 200.0, 1)
+      assert_equal(Hash, order.class)
+      assert order.keys.include?('results') || order.keys.include?('detail')
+    end
+
+    it 'Must try to sell an option' do
+      robinhood = Robinhood::Api.new
+
+      robinhood.login(
+        ENV['ROBINHOOD_USERNAME'],
+        ENV['ROBINHOOD_PASSWORD']
+      )
+
+      order = robinhood.sell('AAPL', 200.0, 1)
+      assert_equal(Hash, order.class)
+      assert order.keys.include?('results') || order.keys.include?('detail')
+    end
+
+    it 'Must try to limit sell an option' do
+      robinhood = Robinhood::Api.new
+
+      robinhood.login(
+        ENV['ROBINHOOD_USERNAME'],
+        ENV['ROBINHOOD_PASSWORD']
+      )
+
+      order = robinhood.limit_sell('AAPL', 200.0, 1)
+      assert_equal(Hash, order.class)
+      assert order.keys.include?('results') || order.keys.include?('detail')
+    end
+
+    it 'Must try to stop loss sell of an option' do
+      robinhood = Robinhood::Api.new
+
+      robinhood.login(
+        ENV['ROBINHOOD_USERNAME'],
+        ENV['ROBINHOOD_PASSWORD']
+      )
+
+      order = robinhood.stop_loss_sell('AAPL', 200.0, 1)
+      assert_equal(Hash, order.class)
+      assert order.keys.include?('results') || order.keys.include?('detail')
+    end
+
+    it 'Must try to cancel an order of an option' do
+      robinhood = Robinhood::Api.new
+
+      robinhood.login(
+        ENV['ROBINHOOD_USERNAME'],
+        ENV['ROBINHOOD_PASSWORD']
+      )
+
+      order = robinhood.cancel_order('7A325341-CEEB-4DEC-AE6D-E607B765FB4D')
+      assert_equal(Hash, order.class)
+      assert order.keys.include?('results') || order.keys.include?('detail')
     end
   end
 
