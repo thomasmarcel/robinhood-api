@@ -21,10 +21,14 @@ gem 'codecov', require: false, group: :test
 gem 'simplecov', require: false, group: :test
 
 group :test, :development do
+  gem 'coveralls', require: false
   gem 'minitest'
-  gem 'minitest-reporters'
   gem 'minitest-junit'
+  gem 'minitest-reporters'
   gem 'rspec'
   gem 'rspec_junit_formatter'
-  gem 'coveralls', require: false
+end
+
+group :development do
+  gem 'pry'
 end

@@ -25,6 +25,7 @@ module Robinhood
     require 'httparty'
     require 'json'
 
+    require_relative './api/accounts'
     require_relative './api/orders'
 
     include HTTParty
@@ -48,26 +49,6 @@ module Robinhood
         @headers['Authorization'] = "Token #{response}"
       end
       response
-    end
-
-    def investment_profile
-      raw_response = HTTParty.get(
-        endpoints[:investment_profile], headers: headers
-      )
-      JSON.parse(raw_response.body)
-    end
-
-    def accounts
-      raw_response = HTTParty.get(endpoints[:accounts], headers: headers)
-      JSON.parse(raw_response.body)
-    end
-
-    def portfolio(account_number)
-      raw_response = HTTParty.get(
-        "https://api.robinhood.com/accounts/#{account_number}/portfolio/",
-        headers: headers
-      )
-      JSON.parse(raw_response.body)
     end
 
     def instruments(symbol)
