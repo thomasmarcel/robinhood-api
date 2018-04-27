@@ -108,12 +108,6 @@ module Robinhood
       }
     end
 
-    def methodlist
-      %i[investment_profile accounts ach_iav_auth ach_relationships
-         ach_transfers applications dividends edocuments margin_upgrade
-         notifications orders password_reset document_requests user watchlists]
-    end
-
     def headers
       @headers ||= {
         'Accept' => 'application/json'
@@ -131,13 +125,18 @@ module Robinhood
         true
       end
     end
-
     # before(*instance_methods) { puts 'start' }
   end
 
   # Robinhood API's class methods
   class Api
     include ApiModule
+
+    def self.methodlist
+      %i[investment_profile accounts ach_iav_auth ach_relationships
+         ach_transfers applications dividends edocuments margin_upgrade
+         notifications orders password_reset document_requests user watchlists]
+    end
 
     def self.flatten(var)
       new_var = {}

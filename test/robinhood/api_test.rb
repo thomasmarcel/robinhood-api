@@ -240,4 +240,38 @@ class RobinhoodApiTest < Minitest::Test
       # assert_equal(true, positions.keys.include?('results'))
     end
   end
+
+  describe 'General helpers' do
+    it 'Must display method list' do
+      assert_equal(15, Robinhood::Api.methodlist.length)
+    end
+
+    it 'Must flatten hash' do
+      example = {
+        a: {
+          d: 4,
+          e: {
+            f: 5,
+            g: 6
+          }
+        },
+        b: 2,
+        c: 3
+      }
+
+      assert_equal(
+        { d: 4, e: { f: 5, g: 6 }, b: 2, c: 3 },
+        Robinhood::Api.flatten(example)
+      )
+    end
+
+    it 'Must return the id only' do
+      assert_equal(
+        '450dfc6d-5510-4d40-abfb-f633b7d9be3e',
+        Robinhood::Api.strip(
+          'https://api.robinhood.com/instruments/450dfc6d-5510-4d40-abfb-f633b7d9be3e/'
+        )
+      )
+    end
+  end
 end
