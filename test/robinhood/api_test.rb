@@ -177,7 +177,7 @@ class RobinhoodApiTest < Minitest::Test
   end
 
   describe 'Instruments and Quotes' do
-    it 'Must must get the instrument for AAPL' do
+    it 'Must must get the instrument for AAPL by symbol and ID' do
       robinhood = Robinhood::Api.new
 
       robinhood.login(
@@ -189,6 +189,10 @@ class RobinhoodApiTest < Minitest::Test
       assert_equal(Hash, instrument.class)
       assert_equal(true, instrument.keys.include?('results'))
       assert_equal(true, instrument['results'][0].keys.include?('symbol'))
+
+      instrument_by_id = robinhood.instruments(instrument['results'][0]['id'])
+      assert_equal(Hash, instrument_by_id.class)
+      assert_equal(true, instrument_by_id.keys.include?('id'))
     end
 
     it 'Must must get the quote for AAPL' do
