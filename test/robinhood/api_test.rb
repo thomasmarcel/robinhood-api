@@ -103,6 +103,32 @@ class RobinhoodApiTest < Minitest::Test
       assert_equal(Hash, order.class)
       assert order.keys.include?('results') || order.keys.include?('detail')
     end
+
+    it 'Must try to stop loss sell of an option' do
+      robinhood = Robinhood::Api.new
+
+      robinhood.login(
+        ENV['ROBINHOOD_USERNAME'],
+        ENV['ROBINHOOD_PASSWORD']
+      )
+
+      order = robinhood.stop_loss_sell('AAPL', 200.0, 1)
+      assert_equal(Hash, order.class)
+      assert order.keys.include?('results') || order.keys.include?('detail')
+    end
+
+    it 'Must try to cancel an order of an option' do
+      robinhood = Robinhood::Api.new
+
+      robinhood.login(
+        ENV['ROBINHOOD_USERNAME'],
+        ENV['ROBINHOOD_PASSWORD']
+      )
+
+      order = robinhood.cancel_order('7A325341-CEEB-4DEC-AE6D-E607B765FB4D')
+      assert_equal(Hash, order.class)
+      assert order.keys.include?('results') || order.keys.include?('detail')
+    end
   end
 
   describe 'User Data' do
