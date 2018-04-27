@@ -11,27 +11,44 @@ module Robinhood
       raw_response = HTTParty.post(
         "https://api.robinhood.com/orders/#{order_id}/cancel/", headers: headers
       )
-      raw_response.code == 200
+      # raw_response.code == 200
+      JSON.parse(raw_response.body)
     end
 
     def order(side, symbol, price, quantity, type)
       instrument = instruments(symbol)['results'][0]
       account = accounts['results'][0]
+
+      body = {
+        'account' => 'https://api.robinhood.com/accounts/' \
+        "#{account['account_number']}/",
+        'instrument' => 'https://api.robinhood.com/instruments/' \
+        "#{instrument['id']}/",
+        'quantity' => quantity,
+        'symbol' => symbol,
+        'type' => type
+      }
+
+      if side == 'stop_loss_sell'
+        side = 'sell'
+        body = body.merge(
+          'side' => side,
+          'stop_price' => price,
+          'time_in_force' => 'gtc',
+          'trigger' => 'stop'
+        )
+      else
+        body = body.merge(
+          'side' => side,
+          'price' => price,
+          'time_in_force' => 'gfd',
+          'trigger' => 'immediate'
+        )
+      end
+
       raw_response = HTTParty.post(
         endpoints[:orders],
-        body: {
-          'account' => 'https://api.robinhood.com/accounts/' \
-          "#{account['account_number']}/",
-          'instrument' => 'https://api.robinhood.com/instruments/' \
-          "#{instrument['id']}/",
-          'price' => price,
-          'quantity' => quantity,
-          'side' => side,
-          'symbol' => symbol,
-          'time_in_force' => 'gfd',
-          'trigger' => 'immediate',
-          'type' => type
-        },
+        body: body,
         headers: headers
       )
 
@@ -55,24 +72,7 @@ module Robinhood
     end
 
     def stop_loss_sell(symbol, price, quantity)
-      raw_response = HTTParty.post(
-        endpoints[:orders],
-        body: {
-          'account' => "https://api.robinhood.com/accounts/#{account_number}/",
-          'instrument' => 'https://api.robinhood.com/instruments/' \
-          "#{instrument_id}/",
-          'stop_price' => price,
-          'quantity' => quantity,
-          'side' => 'sell',
-          'symbol' => symbol,
-          'time_in_force' => 'gtc',
-          'trigger' => 'stop',
-          'type' => 'market'
-        }.to_json,
-        headers: headers
-      )
-
-      JSON.parse(raw_response.body)
+      order('stop_loss_sell', symbol, price, quantity, 'market')
     end
   end
 end
