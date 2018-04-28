@@ -4,6 +4,7 @@
 [![Coverage Status](https://coveralls.io/repos/github/ThomasMarcel/robinhood-api/badge.svg?branch=master)](https://coveralls.io/github/ThomasMarcel/robinhood-api?branch=master) 
 [![Maintainability](https://api.codeclimate.com/v1/badges/8ecfb033edb5380098cf/maintainability)](https://codeclimate.com/github/ThomasMarcel/robinhood-api/maintainability) 
 [![Test Coverage](https://api.codeclimate.com/v1/badges/8ecfb033edb5380098cf/test_coverage)](https://codeclimate.com/github/ThomasMarcel/robinhood-api/test_coverage) 
+[![codecov](https://codecov.io/gh/ThomasMarcel/robinhood-api/branch/master/graph/badge.svg)](https://codecov.io/gh/ThomasMarcel/robinhood-api) 
 [![Dependency Status](https://beta.gemnasium.com/badges/github.com/ThomasMarcel/robinhood-api.svg)](https://beta.gemnasium.com/projects/github.com/ThomasMarcel/robinhood-api) 
 [![Open Source Helpers](https://www.codetriage.com/cucumber/cucumber-rails/badges/users.svg)](https://www.codetriage.com/cucumber/cucumber-rails) 
 
@@ -78,6 +79,22 @@ Or install it yourself as:
 ```bash
 $ gem install robinhood-api
 ```
+
+## Tests
+
+### Run tests
+
+Execute the following command:  
+```ruby
+$ bundle exec rake test
+```  
+
+### Coverage
+
+[![codecov sunburst graph](https://codecov.io/gh/ThomasMarcel/robinhood-api/branch/master/graphs/sunburst.svg)](https://codecov.io/gh/ThomasMarcel/robinhood-api) 
+[![codecov icicle graph](https://codecov.io/gh/ThomasMarcel/robinhood-api/branch/master/graphs/icicle.svg)](https://codecov.io/gh/ThomasMarcel/robinhood-api) 
+[![codecov grid graph](https://codecov.io/gh/ThomasMarcel/robinhood-api/branch/master/graphs/tree.svg)](https://codecov.io/gh/ThomasMarcel/robinhood-api) 
+[![codecov commits graph](https://codecov.io/gh/ThomasMarcel/robinhood-api/branch/master/graphs/commits.svg)](https://codecov.io/gh/ThomasMarcel/robinhood-api) 
 
 ## Contributing
 Contribution directions go here.
