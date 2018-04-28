@@ -4,6 +4,11 @@ require 'coveralls'
 Coveralls.wear! unless ENV['CC_TEST_REPORTER_ID'].nil?
 SimpleCov.start
 
+unless ENV['CC_TEST_REPORTER_ID'].nil?
+  require 'codecov'
+  SimpleCov.formatter = SimpleCov::Formatter::Codecov
+end
+
 # require File.expand_path("../../test/dummy/config/environment.rb", __FILE__)
 # ActiveRecord::Migrator.migrations_paths = [
 #   File.expand_path("../../test/dummy/db/migrate", __FILE__)
