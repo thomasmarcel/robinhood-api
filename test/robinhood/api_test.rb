@@ -273,5 +273,21 @@ class RobinhoodApiTest < Minitest::Test
         )
       )
     end
+
+    it 'Must fix the hash' do
+      example = {
+        'instrument' => 'https://api.robinhood.com/instruments/450dfc6d-5510-4d40-abfb-f633b7d9be3e/',
+        a: 1,
+        b: {
+          c: 2,
+          d: 3
+        }
+      }
+
+      assert_equal(
+        { 'instrument' => '450dfc6d-5510-4d40-abfb-f633b7d9be3e' },
+        Robinhood::Api.fix_hash(example)
+      )
+    end
   end
 end
