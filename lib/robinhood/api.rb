@@ -34,21 +34,35 @@ module Robinhood
 
     def initialize; end
 
-    def login(username, password)
+    def login(username, password, mfa_code = nil)
       raw_response = HTTParty.post(
         endpoints[:login],
-        body: {
-          'password' => password,
-          'username' => username
-        },
+        body: payload(username, password, mfa_code),
         headers: headers
       )
       response = JSON.parse(raw_response.body)
-      if response['token']
-        response = response['token']
-        @headers['Authorization'] = "Token #{response}"
+      if response['access_token']
+        token_type = response['token_type']
+        response = response['access_token']
+        @headers['Authorization'] = "#{token_type} #{response}"
       end
       response
+    end
+
+    def payload(username, password, mfa_code = nil, expires_in = 86400, scope = 'internal')
+      client_id = "c82SH0WZOsabOXGP2sxqcj34FxkvfnWRZBKlBjFS"
+      body = {
+        'client_id': client_id,
+        'expires_in': expires_in,
+        'grant_type': 'password',
+        'password': password,
+        'scope': scope,
+        'username': username,
+        'challenge_type': 'sms', # 'email'
+        'device_token': generate_device_token
+      }
+      body['mfa_code'] = mfa_code unless mfa_code.nil?
+      body
     end
 
     def instruments(symbol)
@@ -76,8 +90,18 @@ module Robinhood
     end
 
     def positions(account_number, instrument_id = nil)
-      url = "https://api.robinhood.com/accounts/#{account_number}/positions"
+      url = "https://api.robinhood.com/positions/?nonzero=true"
       url = "#{url}/#{instrument_id}/" if instrument_id
+      raw_response = HTTParty.get(url, headers: headers)
+      JSON.parse(raw_response.body)
+    end
+
+    def dividends()
+      raw_response = HTTParty.get(endpoints[:dividends], headers: headers)
+      JSON.parse(raw_response.body)
+    end
+
+    def url(url)
       raw_response = HTTParty.get(url, headers: headers)
       JSON.parse(raw_response.body)
     end
@@ -85,8 +109,9 @@ module Robinhood
     private
 
     def endpoints
+      # return api_url + "/oauth2/token/"
       {
-        login:  'https://api.robinhood.com/api-token-auth/',
+        login:  'https://api.robinhood.com/oauth2/token/',
         investment_profile: 'https://api.robinhood.com/user/investment_profile/',
         accounts: 'https://api.robinhood.com/accounts/',
         ach_iav_auth: 'https://api.robinhood.com/ach/iav/auth/',
@@ -125,7 +150,32 @@ module Robinhood
         true
       end
     end
-    # before(*instance_methods) { puts 'start' }
+
+    ##
+    # This function will generate a token used when loggin on.
+    # :returns: A string representing the token.
+    ##
+    def generate_device_token()
+      rands = []
+      (0...16).each do |i|
+        r = Random.rand()
+        rand = 4294967296.0 * r
+        rands << ((rand.to_i >> ((3 & i) << 3)) & 255)
+      end
+
+      hexa = []
+      (0...256).each do |i|
+        hexa << ((i + 256).to_s(16))[1..-1]
+      end
+
+      id = ""
+      (0...16).each do |i|
+        id += hexa[rands[i]]
+        id += "-" if i == 3 || i == 5 || i == 7 || i == 9
+      end
+
+      id
+    end
   end
 
   # Robinhood API's class methods
