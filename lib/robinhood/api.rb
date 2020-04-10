@@ -90,8 +90,12 @@ module Robinhood
     end
 
     def positions(account_number, instrument_id = nil)
-      url = "https://api.robinhood.com/positions/?nonzero=true"
-      url = "#{url}/#{instrument_id}/" if instrument_id
+      url = "https://api.robinhood.com/positions"
+      if instrument_id
+        url = "#{url}/#{instrument_id}/" if instrument_id
+      else
+        url = "#{url}/?nonzero=true"
+      end
       raw_response = HTTParty.get(url, headers: headers)
       JSON.parse(raw_response.body)
     end
